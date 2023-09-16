@@ -1,6 +1,6 @@
 # Stay-Chatty
 
-![alt tag](https://imgur.com/QMeLYOz.png)
+![alt tag](https://imgur.com/tEltv3k.png)
 
 ## How It's Made:
 
