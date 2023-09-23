@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: 16,
-    fontWeight: 300,
+    fontWeight: '300',
     width: 250,
     borderWidth: 0.35,
     borderColor: 'lightgrey',
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
   startChattingText: {
     fontSize: 16,
-    fontWeight: 600,
+    fontWeight: '600',
     color: '#FFFFFF',
     backgroundColor: '#757083'
   },
