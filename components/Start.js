@@ -4,11 +4,13 @@ import {
   View,
   ImageBackground,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 import backgroundImage from '../assets/Background-Image.png';
 import { useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { getAuth, signInAnonymously } from 'firebase/auth';
 
 const StartApp = ({ navigation }) => {
   //state to store users name that is typed in and then is displayed as a heading on chat screen.
@@ -27,6 +29,23 @@ const StartApp = ({ navigation }) => {
     } else {
       return null;
     }
+  };
+
+  const auth = getAuth();
+
+  const signInUser = () => {
+    signInAnonymously(auth)
+      .then((result) => {
+        navigation.navigate('Chat', {
+          userID: result.user.uid,
+          name,
+          pickColor
+        });
+        Alert.alert('Signed in Successfully!');
+      })
+      .catch((error) => {
+        Alert.alert('Unable to sign in, try later again.');
+      });
   };
 
   return (
@@ -83,9 +102,7 @@ const StartApp = ({ navigation }) => {
           </View>
           <TouchableOpacity
             style={[styles.chatBtn, { backgroundColor: '#757083' }]}
-            onPress={() => {
-              navigation.navigate('ChatScreen', { name, pickColor });
-            }}
+            onPress={signInUser}
             title='Go to Chatty Screen'
           >
             <Text style={styles.startChattingText}>Start Chatting</Text>
