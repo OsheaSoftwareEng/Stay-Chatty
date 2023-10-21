@@ -51,6 +51,7 @@ expo start or npm start
 
 #### Install these dependencies in project folder
 
+```shell
 "dependencies": {
 "@react-native-async-storage/async-storage": "1.18.2",
 "@react-native-community/netinfo": "9.3.10",
@@ -66,6 +67,7 @@ expo start or npm start
 "react-native-gifted-chat": "^2.4.0",
 "react-native-maps": "1.7.1"
 }
+```
 
 ## Database setup
 
@@ -80,6 +82,8 @@ npm install firebase
 3. Import firebase config from project settings(below is example code yours will be different make sure to overwrite the config in this project).
 
 // Your web app's Firebase configuration
+
+```shell
 const firebaseConfig = {
 apiKey: "AIzaSyAWnfpvCHIwaKD0wYaUCbH9pqbAu4NhyAY",
 authDomain: "chatapp-f783f.firebaseapp.com",
@@ -88,6 +92,7 @@ storageBucket: "chatapp-f783f.appspot.com",
 messagingSenderId: "751916694021",
 appId: "1:751916694021:web:42126664c67d40b06cba6c"
 };
+```
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -98,16 +103,14 @@ const app = initializeApp(firebaseConfig);
 
 rules_version = '2';
 
-// Craft rules based on data in your Firestore database
-// allow write: if firestore.get(
-// /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
+```shell
 service firebase.storage {
 match /b/{bucket}/o {
 match /{allPaths=\*\*} {
 allow read, write: if true;
 }
-}
-}
+
+```
 
 ## Optimizations
 
