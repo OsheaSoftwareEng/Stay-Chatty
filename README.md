@@ -23,7 +23,7 @@ Stay Chatty is a mobile application that allows users to chat back in forth and 
 
 ## Getting started
 
-#### Create a new folder
+#### 1. Create a new folder
 
 Clone the git repository within the project directory folder you just created.
 
