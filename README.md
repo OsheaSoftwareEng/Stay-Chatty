@@ -3,11 +3,11 @@
 <img																		     src="/assets/Homepage_screenshot.png"
   alt="Alt text"
   title="Homepage display"
-  style="display: inline-block; width: 250px">
+  style="display: inline-block; width: 400px">
 <img																		     src="/assets/Chat_Screenshot.png"
   alt="Alt text"
   title="Chat display"
-  style="display: inline-block; width: 250px">
+  style="display: inline-block; width: 400px">
 
 ## How It's Made:
 
