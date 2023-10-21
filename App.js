@@ -8,6 +8,7 @@ import { useNetInfo } from '@react-native-community/netinfo';
 import { useEffect } from 'react';
 import { Alert } from 'react-native';
 import { disableNetwork, enableNetwork } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +41,8 @@ const App = () => {
     experimentalForceLongPolling: true
   });
 
+  const storage = getStorage(app);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Start'>
@@ -49,6 +52,7 @@ const App = () => {
             <ChattyScreen
               isConnected={connectionStatus.isConnected}
               db={db}
+              storage={storage}
               {...props}
             />
           )}
