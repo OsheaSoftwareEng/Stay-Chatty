@@ -1,7 +1,10 @@
-import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView, Alert } from 'react-native';
 import { useEffect, useState } from 'react';
 import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import MapView from 'react-native-maps';
+
+import CustomActions from './CustomActions';
 import {
   collection,
   addDoc,
@@ -10,7 +13,7 @@ import {
   orderBy
 } from 'firebase/firestore';
 
-const ChattyScreen = ({ route, navigation, db, isConnected }) => {
+const ChattyScreen = ({ route, navigation, db, isConnected, storage }) => {
   const { name, pickColor, userID } = route.params;
   const [messages, setMessages] = useState([]);
 
@@ -68,6 +71,24 @@ const ChattyScreen = ({ route, navigation, db, isConnected }) => {
     setMessages(JSON.parse(cachedMessages));
   };
 
+  const renderCustomView = (props) => {
+    const { currentMessage } = props;
+    if (currentMessage.location) {
+      return (
+        <MapView
+          style={{ width: 150, height: 100, borderRadius: 13, margin: 3 }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421
+          }}
+        />
+      );
+    }
+    return null;
+  };
+
   //disables toolbar if user loses connection
   const renderInputToolbar = (props) => {
     if (isConnected) return <InputToolbar {...props} />;
@@ -90,11 +111,18 @@ const ChattyScreen = ({ route, navigation, db, isConnected }) => {
       />
     );
   };
+
+  const renderCustomActions = (props) => {
+    return <CustomActions storage={storage} {...props} />;
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: pickColor }]}>
       <GiftedChat
         renderInputToolbar={renderInputToolbar}
         renderBubble={renderBubble}
+        renderActions={renderCustomActions}
+        renderCustomView={renderCustomView}
         messages={messages}
         onSend={(messages) => onSend(messages)}
         user={{
