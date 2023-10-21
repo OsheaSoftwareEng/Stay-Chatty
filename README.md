@@ -23,11 +23,7 @@ Stay Chatty is a mobile application that allows users to chat back in forth and 
 
 ## Getting started
 
-Create a new project with React Native:
-
-```shell
-npx create-expo-app chat-app --template
-```
+Create a new folder.
 
 Clone the git repository within the project directory folder you just created.
 
@@ -79,9 +75,7 @@ expo start or npm start
 npm install firebase
 ```
 
-3. Import firebase config from project settings(below is example code yours will be different make sure to overwrite the config in this project).
-
-// Your web app's Firebase configuration
+3. Import firebase config from project settings(below is example code yours will be different make sure to overwrite the existing config in this project).
 
 ```shell
 const firebaseConfig = {
@@ -92,24 +86,25 @@ storageBucket: "chatapp-f783f.appspot.com",
 messagingSenderId: "751916694021",
 appId: "1:751916694021:web:42126664c67d40b06cba6c"
 };
-```
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+```
 
 4. On the Firebase website within firebase database rules adjust "allow read, write: if false;" to "allow read, write: if true;", then publish.
 
 #### Example of correct rules in storage
 
+```shell
+
 rules_version = '2';
 
-```shell
 service firebase.storage {
 match /b/{bucket}/o {
 match /{allPaths=\*\*} {
 allow read, write: if true;
 }
-
 ```
 
 ## Optimizations
