@@ -34,7 +34,7 @@ Clone the git repository within the project directory folder you just created.
 Install Expo Globally:
 
 ```shell
-npm install - expo-cli
+npm install --global expo-cli
 ```
 
 Start Expo:
